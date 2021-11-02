@@ -2,21 +2,35 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Droppable } from 'react-beautiful-dnd';
 
-import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
 
-import CustomListItem from './ListItem';
+import CustomListItem from './common/ListItem';
 
 import { listType } from '../Config.js';
 
+/**
+ *  functional component to render Dimension box
+ * handles dropping feature for the box
+ * features:
+ *    - allow single drop card
+ *    - clear card button
+ *    - update app state to use the data in chart component
+ *    - cards resizing based on no. of cards in the box
+ * @param {array} dropBoxList
+ * @param {func} setDropBoxList setter function to update app state
+ */
 function Dimension({ dropBoxValue, setDropBoxValue }) {
+  /**
+   * clear button for clearing dimension box
+   */
   const clearBtn = (
     <IconButton
       disabled={dropBoxValue ? false : true}
-      title="Clear"
-      aria-label="delete"
+      title="Clear "
+      aria-label="clear"
       size="large"
       onClick={() => {
         setDropBoxValue(null);

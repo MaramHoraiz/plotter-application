@@ -10,7 +10,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 
 import RestHelper from '../utils/RestHelper';
-import CustomListItem from './ListItem';
+import CustomListItem from './common/ListItem';
 
 import { listType } from '../Config.js';
 

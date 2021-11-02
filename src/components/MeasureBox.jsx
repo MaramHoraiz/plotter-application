@@ -1,19 +1,63 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { Droppable } from 'react-beautiful-dnd';
-import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import Typography from '@mui/material/Typography';
+import { Droppable } from 'react-beautiful-dnd';
+import Card from '@mui/material/Card';
 
-import CustomListItem from './ListItem';
+import CustomListItem from './common/ListItem';
 
 import { listType } from '../Config.js';
+/**
+ * functional component to render measure box
+ * handles dropping feature for the box
+ * features:
+ *    - allow multiple drop cards
+ *    - clear all and clear card buttons
+ *    - update app state to use the data in chart component
+ *    - cards resizing based on no. of cards in the box
+ * @param {array} dropBoxList
+ * @param {func} setDropBoxList setter function to update app state
+ */
 function MeasureBox({ dropBoxList, setDropBoxList }) {
+
+  /**
+   * create clear button
+   * @param {flag} isClearAll
+   * @param {string} title
+   * @param {string} size
+   * @param {string} itemId
+   * @returns
+   */
+  const clearButton=(isClearAll, title, size, itemId)=>{
+  return  (<IconButton
+    edge="end"
+    aria-label={title}
+    disabled={dropBoxList.length > 0 ? false : true}
+    title={title}
+    size={size}
+    onClick={(e) => {
+      if (dropBoxList.length === 0 || isClearAll) {
+        setDropBoxList([]);
+        return;
+      }
+      dropBoxList = dropBoxList.filter(
+        (item) => item.name !== e.target.id
+      );
+      setDropBoxList([...dropBoxList]);
+    }}
+  >
+    <ClearIcon id={itemId} />
+  </IconButton>)
+  }
+
   return (
     <Card className="drop-box" variant="outlined">
-      <Typography variant="h6" className="text-name">Measure</Typography>
+      <Typography variant="h6" className="text-name">
+        Measure
+      </Typography>
       <Droppable droppableId={listType.MEASURE}>
         {(provided) => (
           <div
@@ -28,25 +72,7 @@ function MeasureBox({ dropBoxList, setDropBoxList }) {
                 text={item.name}
                 index={item.id}
                 isDraggable={false}
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="clear"
-                    title="Clear"
-                    size="small"
-                    onClick={(e) => {
-                      if (dropBoxList.length === 0) {
-                        setDropBoxList([]);
-                        return;
-                      }
-                      dropBoxList = dropBoxList.filter(
-                        (item) => item.name !== e.target.id
-                      );
-                      setDropBoxList([...dropBoxList]);
-                    }}
-                  >
-                    <ClearIcon id={item.name} />
-                  </IconButton>
+                secondaryAction={clearButton(false, "clear", "small", item.name)
                 }
               />
             ))}
@@ -54,27 +80,14 @@ function MeasureBox({ dropBoxList, setDropBoxList }) {
           </div>
         )}
       </Droppable>
-      <IconButton
-        disabled={dropBoxList?.length > 0 ? false : true}
-        title="Clear All"
-        aria-label="clear all"
-        size="large"
-        onClick={() => {
-          setDropBoxList([]);
-        }}
-      >
-        <ClearIcon />
-      </IconButton>
+      {clearButton(false, "Clear All", "large", "clearAll")}
     </Card>
   );
 }
 
 MeasureBox.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
+  dropBoxList: PropTypes.array,
+  setDropBoxList: PropTypes.func,
 };
 
 export default MeasureBox;
