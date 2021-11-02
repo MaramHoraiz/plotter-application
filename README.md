@@ -1,23 +1,23 @@
 # Getting Started with Plotter App
 
 ### Libraries 
-This react project was created by 
+This react project was created using: 
 - Material UI.
 - react-beautiful-dnd.
 - chart.js.
 - fetch webAPI
 
 ### Handled Features
-- Fetch Data of "dimension and measure" and create Dragabble list.
-- create two droppable boxes "dimension and measure".
-- each data type should be able to drop to its dropbox.
-- dropbox can allow only one item or multiple (bonus).
-- you can clear all or clear one of the items.
+- Fetches the data of "dimension and measure" and creates a Dragabble list.
+- Creates two droppable boxes "dimension and measure".
+- Each data type should be able to be dropped into its dropbox.
+- in dropbox one or multiple items are allowed (bonus).
+- You can clear one more more items.
 - a line-chart created based on user selection on drop boxes, Where the X-Axis represents the dimension datavalues and the Y-Axis represents the measure data values corresponding to the dimension values.
-- line-chart support multiple Y-Axis "measure" at the same time (bonus).
-- Label on each axis, showing the current measure/dimension
-- X-Axis, Y-Axis showing ticks with labels representing the current dimension values
-- When hover on the data-points, show a tooltip for the values at that point (bonus).
+- The line-chart supports multiple Y-Axis "measure" at the same time (bonus).
+- The label on each axis, shows the current measure/dimension.
+- X-Axis, Y-Axis are showing ticks with labels representing the current dimension values.
+- When the data-points are hovered, a tooltip for the values at that point is showen (bonus).
 
 ### Wireframe
 architecture component for plotter app
