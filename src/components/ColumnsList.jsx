@@ -49,6 +49,7 @@ function ColumnsList({ drawerWidth, columnsSetter, columns }) {
             <CustomListItem
               tooltip={`${item.name} ${listType.DIMENSION}`}
               text={item.name}
+              key={`${item.name}-${listType.DIMENSION}`}
               index={index}
               isDraggable={true}
             />
@@ -64,6 +65,7 @@ function ColumnsList({ drawerWidth, columnsSetter, columns }) {
               tooltip={`${item.name} ${listType.MEASURE}`}
               text={item.name}
               index={index}
+              key={`${item.name}-${listType.MEASURE}`}
               isDraggable={true}
             />
           ) : null;

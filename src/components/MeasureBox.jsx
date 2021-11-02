@@ -71,6 +71,7 @@ function MeasureBox({ dropBoxList, setDropBoxList }) {
                 tooltip={item.name}
                 text={item.name}
                 index={item.id}
+                key={`${item.name}-${item.id}`}
                 isDraggable={false}
                 secondaryAction={clearButton(false, "clear", "small", item.name)
                 }
@@ -80,7 +81,7 @@ function MeasureBox({ dropBoxList, setDropBoxList }) {
           </div>
         )}
       </Droppable>
-      {clearButton(false, "Clear All", "large", "clearAll")}
+      {clearButton(true, "Clear All", "large", "clearAll")}
     </Card>
   );
 }

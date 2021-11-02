@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 const CustomListItem = ({
   isDraggable,
   text,
+  itemId,
   index,
   tooltip,
   width,
@@ -24,7 +25,8 @@ const CustomListItem = ({
           className="dnd-item"
           button
           title={tooltip}
-          key={text}
+          // key={itemId || text }
+          // id={itemId || text }
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -39,7 +41,8 @@ const CustomListItem = ({
     <ListItem
       className="dnd-item"
       button
-      key={text}
+      // key={itemId || text }
+      // id={itemId || text }
       sx={{ width: width }}
       secondaryAction={secondaryAction}
     >
@@ -51,6 +54,6 @@ CustomListItem.propTypes = {
   isDraggable: PropTypes.bool,
   text: PropTypes.string,
   tooltip: PropTypes.string,
-  secondaryAction: PropTypes.func,
+  secondaryAction: PropTypes.object,
 };
 export default CustomListItem;
